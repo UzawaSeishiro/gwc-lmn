@@ -1,10 +1,11 @@
-listup, state = "P", t, t.
+state = "P", listup, t, t.
 
-def("P") = act("p", "P1").
-def("P1") = act("cs", "P2").
-def("P2") = act("v", "P").
+def("P") = act("a1", "P1").
+def("P") = act("a2", "P2").
+def("P1") = act("a3", "P").
+def("P2") = act("a4", "P").
 
-listup, state(S), t :- unary(S) | listing, state(S), eval(S).
+listup, state = S, t :- unary(S) | listing, state(S), eval(S).
 choices = [].
 eval(S), def(P) = E :- S == P | def(P) = eval(E).
 listing, R = eval(act(A, E)), choices = AL :- unary(A) | listed, choices = [act(A, M)|AL], R = marker(M, act(A, E)).
